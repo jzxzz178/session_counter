@@ -4,12 +4,12 @@ from datetime import datetime
 from . import models, schemas
 
 
-def get_session_count(db: Session):
+async def get_session_count(db: Session):
     query = db.query(models.VisitingSession).count()
     return query
 
 
-def create_user_session(db: Session, user_session: schemas.CreateUserSession):
+async def create_user_session(db: Session, user_session: schemas.CreateUserSession):
     db_session = models.VisitingSession(**user_session.dict())
     db.add(db_session)
     db.commit()

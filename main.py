@@ -16,8 +16,6 @@ from sqlalchemy.orm import Session
 from sql_app import crud, models, schemas, database
 from sql_app.database import SessionLocal, engine
 
-# from session_counter import session_counter
-
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
@@ -30,5 +28,5 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 @app.get("/")
 # @session_counter
-def root(request: fastapi.Request, db: Session = Depends(database.get_db)):
+async def root(request: fastapi.Request, db: Session = Depends(database.get_db)):
     return RedirectResponse('pages/home')
