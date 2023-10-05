@@ -48,6 +48,6 @@ async def get_search_template(request: Request, db: Session = Depends(database.g
     return templates.TemplateResponse('search.html', {'request': request})
 
 
-@router.get('/get_sessions')
+@router.get('/sessions')
 async def get_session_count(request: Request, db: Session = Depends(database.get_db)):
     return await crud.get_session_count(db)

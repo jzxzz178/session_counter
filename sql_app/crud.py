@@ -1,11 +1,14 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from datetime import datetime
 
 from . import models, schemas
 
 
 async def get_session_count(db: Session):
-    query = db.query(models.VisitingSession).count()
+    query = (db.query(models.VisitingSession.path,
+                      func.count(models.VisitingSession.path))
+             .group_by(models.VisitingSession.path))
     return query
 
 
