@@ -35,17 +35,16 @@ async def get_home_page(request: Request, db: Session = Depends(database.get_db)
     return templates.TemplateResponse('home.html', {'request': request})
 
 
-@router.get('/base')
-# @session_counter
-async def get_base_template(request: Request,
-                            db: Session = Depends(database.get_db)):
-    return templates.TemplateResponse('base.html', {'request': request})
+# @router.get('/base')
+# async def get_base_template(request: Request,
+#                             db: Session = Depends(database.get_db)):
+#     return templates.TemplateResponse('base.html', {'request': request})
 
 
-@router.get('/search')
-# @session_counter
+@router.get('/aboutFastapi')
 async def get_search_template(request: Request, db: Session = Depends(database.get_db)):
-    return templates.TemplateResponse('search.html', {'request': request})
+    await update_db(request, db)
+    return templates.TemplateResponse('aboutFastapi.html', {'request': request})
 
 
 @router.get('/sessions')

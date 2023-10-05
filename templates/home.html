@@ -1,11 +1,44 @@
-{% extends "base.html" %}
-
-{% block head %}
-{% endblock %}
-
-
-{% block content %}
-<div class="grid justify-items-center">
-    <h1 class="font-sans">Добро пожаловать на мой персональный сайт</h1>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>Мой сайт</title>
+</head>
+<body>
+<header>
+    <h1>Добро пожаловать на сайт-счётчик посещений</h1>
+    <nav>
+        <ul>
+            <li><a href="/pages/home">Главная</a></li>
+            <li><a href="/pages/aboutFastapi">О Fastapi</a></li>
+            <li><a href="/pages/sessions">Статистика</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="main-content">
+    <h2>Куда я попал?</h2>
+    <p>Этот сайт умеет собирать статистику по посещениям</p>
+</section>
+<section class="main-content">
+    <h2>Что тут есть?</h2>
+    <p class="parag">На этом демонстационном сайте размещены следующие страницы:</p>
+    <ul>
+        <li>Главная</li>
+        <li>Страница о Fastapi</li>
+        <li>Статистика</li>
+    </ul>
+</section>
+<section class="main-content">
+    <h2>Контакты</h2>
+    <address>
+        <p>Email: info@example.com</p>
+        <p>Телефон: +1 (123) 456-7890</p>
+    </address>
+</section>
+<footer>
+    <p>&copy; 2023 Мой сайт</p>
+</footer>
+</body>
+</html>
