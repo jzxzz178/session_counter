@@ -1,20 +1,13 @@
-from datetime import datetime
-from uuid import uuid1
-
 import fastapi
-import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
-from pydantic import ValidationError
+from fastapi import FastAPI, Depends
+from fastapi.routing import APIRoute
+from fastapi.staticfiles import StaticFiles
+from sqlalchemy.orm import Session
+from starlette.responses import HTMLResponse, RedirectResponse
 
 from pages.router import router as router_pages
-from fastapi.staticfiles import StaticFiles
-
-from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy.orm import Session
-
-from sql_app import crud, models, schemas, database
-from sql_app.database import SessionLocal, engine
+from sql_app import models, database
+from sql_app.database import engine
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -27,6 +20,26 @@ app.mount('/static', StaticFiles(directory='static'), name='static')
 
 
 @app.get("/")
-# @session_counter
 async def root(request: fastapi.Request, db: Session = Depends(database.get_db)):
     return RedirectResponse('pages/home')
+
+#
+# def custom_route(path, endpoint, methods=None):
+#     if methods is None:
+#         methods = ["GET"]
+#     route = APIRoute(path=path, endpoint=endpoint, methods=methods)
+#     app.router.routes.append(route)
+#
+#
+# def read_html_file(file_path):
+#     with open(file_path, "r", encoding="utf-8") as file:
+#         html_content = file.read()
+#     return html_content
+#
+#
+# def home(request: fastapi.Request):
+#     homehtml = read_html_file('templates/home.html')
+#     return HTMLResponse(content=homehtml)
+#
+#
+# custom_route("/", home)
